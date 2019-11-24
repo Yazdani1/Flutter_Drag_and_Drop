@@ -16,7 +16,7 @@ class _HomeState extends State<Home> {
       ),
 
       body: Container(
-        height: 800.0,
+        height: 200.0,
         width: MediaQuery
             .of(context)
             .size
@@ -27,9 +27,10 @@ class _HomeState extends State<Home> {
 
             Container(
               height: 200.0,
+              width: 250.0,
               margin: EdgeInsets.all(10.0),
               decoration: BoxDecoration(
-                  color: Colors.deepOrange,
+                  color: Colors.amber,
                 borderRadius: BorderRadius.circular(15.0)
               ),
 
@@ -55,6 +56,7 @@ class _HomeState extends State<Home> {
 
             Container(
               height: 200.0,
+              width: 250.0,
               margin: EdgeInsets.all(10.0),
               decoration: BoxDecoration(
                   color: Colors.deepOrange,
@@ -83,6 +85,7 @@ class _HomeState extends State<Home> {
 
             Container(
               height: 200.0,
+              width: 250.0,
               margin: EdgeInsets.all(10.0),
               decoration: BoxDecoration(
                   color: Colors.purple,
