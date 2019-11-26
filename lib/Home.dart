@@ -33,7 +33,7 @@ class _HomeState extends State<Home> {
                 margin: EdgeInsets.all(10.0),
                 decoration: BoxDecoration(
                     color: Colors.amber,
-                  borderRadius: BorderRadius.circular(15.0)
+                  borderRadius: BorderRadius.circular(20.0)
                 ),
 
                 child: Stack(
