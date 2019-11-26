@@ -29,7 +29,7 @@ class _HomeState extends State<Home> {
 
               Container(
                 height: 200.0,
-                width: 250.0,
+                width: 260.0,
                 margin: EdgeInsets.all(10.0),
                 decoration: BoxDecoration(
                     color: Colors.amber,
