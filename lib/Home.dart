@@ -69,7 +69,7 @@ class _HomeState extends State<Home> {
                   children: <Widget>[
 
                     Positioned(
-                      top: 50.0,
+                      top: 60.0,
                       left: 50.0,
                       bottom: 50.0,
                       child: Text("Second Options",
