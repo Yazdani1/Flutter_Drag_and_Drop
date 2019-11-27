@@ -54,7 +54,7 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
-              SizedBox(width: 5.0,),
+              SizedBox(width: 6.0,),
 
               Container(
                 height: 200.0,
