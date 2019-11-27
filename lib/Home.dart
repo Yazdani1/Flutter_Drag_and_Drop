@@ -45,7 +45,7 @@ class _HomeState extends State<Home> {
                       bottom: 50.0,
                       child: Text("Working here",
                         style: TextStyle(
-                            fontSize: 25.0,
+                            fontSize: 20.0,
                             color: Colors.white
                         ),
                       ),
