@@ -28,7 +28,7 @@ class _HomeState extends State<Home> {
             children: <Widget>[
 
               Container(
-                height: 200.0,
+                height: 300.0,
                 width: 260.0,
                 margin: EdgeInsets.all(10.0),
                 decoration: BoxDecoration(
