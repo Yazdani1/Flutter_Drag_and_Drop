@@ -6,6 +6,28 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  List<ItemModel>items;
+  List<ItemModel>items2;
+
+  initGame(){
+    items=[
+      ItemModel(icon: Icons.remove_red_eye, name: "Google", value: "google"),
+      ItemModel(icon: Icons.face, name: "Facebook", value: "facebook"),
+      ItemModel(icon: Icons.insert_chart, name: "Instagram", value: "instagram"),
+      ItemModel(icon: Icons.library_books, name: "Linkdin", value: "linkdin"),
+      ItemModel(icon: Icons.transfer_within_a_station, name: "Twitter", value: "twitter"),
+    ];
+    items2=List<ItemModel>.from(items);
+    items.shuffle();
+    items2.shuffle();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -15,115 +37,18 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.green,
       ),
 
-      body: Container(
-        color: Colors.deepOrange,
-        width: MediaQuery
-            .of(context)
-            .size
-            .width,
-        child: Container(
-          height: 200.0,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: <Widget>[
-
-              Container(
-                height: 300.0,
-                width: 300.0,
-                margin: EdgeInsets.all(10.0),
-                decoration: BoxDecoration(
-                    color: Colors.amber,
-                  borderRadius: BorderRadius.circular(20.0)
-                ),
-
-                child: Stack(
-                  children: <Widget>[
-
-                    Positioned(
-                      top: 50.0,
-                      left: 50.0,
-                      bottom: 50.0,
-                      child: Text("Working here",
-                        style: TextStyle(
-                            fontSize: 20.0,
-                            color: Colors.white
-                        ),
-                      ),
-                    )
-
-                  ],
-                ),
-              ),
-              SizedBox(width: 6.0,),
-
-              Container(
-                height: 200.0,
-                width: 250.0,
-                margin: EdgeInsets.all(10.0),
-                decoration: BoxDecoration(
-                    color: Colors.deepOrange,
-                    borderRadius: BorderRadius.circular(15.0)
-                ),
-
-                child: Stack(
-                  children: <Widget>[
-
-                    Positioned(
-                      top: 60.0,
-                      left: 50.0,
-                      bottom: 50.0,
-                      child: Text("Second Options",
-                        style: TextStyle(
-                            fontSize: 25.0,
-                            color: Colors.white
-                        ),
-                      ),
-                    )
-
-                  ],
-                ),
-              ),
-              SizedBox(width: 5.0,),
-
-              Container(
-                height: 200.0,
-                width: 250.0,
-                margin: EdgeInsets.all(10.0),
-                decoration: BoxDecoration(
-                    color: Colors.purple,
-                    borderRadius: BorderRadius.circular(15.0)
-                ),
-
-                child: Stack(
-                  children: <Widget>[
-
-                    Positioned(
-                      top: 50.0,
-                      left: 50.0,
-                      bottom: 50.0,
-                      child: Text("Third Options",
-                        style: TextStyle(
-                            fontSize: 25.0,
-                            color: Colors.white
-                        ),
-                      ),
-                    )
-
-                  ],
-                ),
-              ),
-              SizedBox(width: 5.0,),
-
-
-
-            ],
-          ),
-        ),
-      ),
 
 
     );
   }
 }
 
+class ItemModel{
 
+  final String name;
+  final String value;
+  final IconData icon;
+
+  ItemModel({this.name,this.value,this.icon});
+
+}
