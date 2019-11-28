@@ -10,23 +10,42 @@ class _HomeState extends State<Home> {
   List<ItemModel>items;
   List<ItemModel>items2;
 
-  initGame(){
-    items=[
-      ItemModel(icon: Icons.remove_red_eye, name: "Google", value: "google"),
-      ItemModel(icon: Icons.face, name: "Facebook", value: "facebook"),
-      ItemModel(icon: Icons.insert_chart, name: "Instagram", value: "instagram"),
-      ItemModel(icon: Icons.library_books, name: "Linkdin", value: "linkdin"),
-      ItemModel(icon: Icons.transfer_within_a_station, name: "Twitter", value: "twitter"),
-    ];
-    items2=List<ItemModel>.from(items);
-    items.shuffle();
-    items2.shuffle();
-  }
-
   @override
   void initState() {
     super.initState();
+    initGame();
   }
+
+  initGame() {
+    items = [
+      ItemModel(icon: Icons.remove_red_eye, name: "Google", value: "google"),
+      ItemModel(icon: Icons.face, name: "Facebook", value: "facebook"),
+      ItemModel(
+          icon: Icons.insert_chart, name: "Instagram", value: "instagram"),
+      ItemModel(icon: Icons.library_books, name: "Linkdin", value: "linkdin"),
+      ItemModel(icon: Icons.transfer_within_a_station,
+          name: "Twitter",
+          value: "twitter"),
+    ];
+    items2 = List < ItemModel
+    >
+        .
+    from
+    (
+    items
+    );
+    items
+        .
+    shuffle
+    (
+    );
+    items2
+    .
+    shuffle
+    (
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -37,18 +56,62 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.green,
       ),
 
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(16.0),
+        child: Row(
+          children: <Widget>[
 
+            Column(
+                children: items.map((item) {
+                  return Container(
+                      margin: EdgeInsets.all(10.0),
+                      child: Draggable<ItemModel>(
+                        data: item,
+                        childWhenDragging: Icon(item.icon,color: Colors.grey,size: 50.0,),
+                        feedback: Icon(item.icon,size: 70.0,color: Colors.deepOrange,),
+                          child:Icon(item.icon, size: 50.0, color: Colors.amber,)
+                      )
+                  );
+                }).toList()
+            ),
+            Spacer(),
+
+
+            Column(
+                children: items.map((item) {
+                  return DragTarget<ItemModel>(
+
+                    builder:(context,acceptedItems, rejectedItems) => Container(
+                        margin: EdgeInsets.all(10.0),
+                        alignment: Alignment.center,
+                        width: 150.0,
+                        padding: EdgeInsets.all(10.0),
+                        decoration: BoxDecoration(
+                          color: Colors.deepOrange,
+                          borderRadius: BorderRadius.circular(10.0)
+                        ),
+                        child: Text(item.name,
+                          style: TextStyle(fontSize: 20.0, color: Colors.white),)
+                    ),
+                  );
+                }).toList()
+            ),
+
+
+          ],
+        ),
+      ),
 
     );
   }
 }
 
-class ItemModel{
+class ItemModel {
 
   final String name;
   final String value;
   final IconData icon;
 
-  ItemModel({this.name,this.value,this.icon});
+  ItemModel({this.name, this.value, this.icon});
 
 }
