@@ -66,7 +66,13 @@ class _HomeState extends State<Home> {
             Text.rich(TextSpan(
               children: [
                 TextSpan(text: "Total Score:"),
-                TextSpan(text: "$score");
+                TextSpan(text: "$score",
+                style: TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.purple,
+                  fontWeight: FontWeight.bold
+                )
+                )
               ]
             )),
             
@@ -97,17 +103,34 @@ class _HomeState extends State<Home> {
                             setState(() {
                               items.remove(receivedItem);
                               items2.remove(item);
+                              score+=10;
+                              item.acceptItem=false;
+                            });
+                          }else{
+                            setState(() {
+                              score-=5;
+                              item.acceptItem=false;
                             });
                           }
                         },
-                        onWillAccept: (receivedItem)=>true,
+                          onLeave: (receivedItem){
+                          setState(() {
+                            item.acceptItem=false;
+                          });
+                          },
+                        onWillAccept: (receivedItem){
+                          setState(() {
+                            item.acceptItem=true;
+                          });
+                          return true;
+                        },
                         builder:(context,acceptedItems, rejectedItems) => Container(
                             margin: EdgeInsets.all(10.0),
                             alignment: Alignment.center,
                             width: 150.0,
                             padding: EdgeInsets.all(10.0),
                             decoration: BoxDecoration(
-                              color: Colors.deepOrange,
+                              color: item.acceptItem ? Colors.green : Colors.deepOrange,
                               borderRadius: BorderRadius.circular(10.0)
                             ),
                             child: Text(item.name,
@@ -133,7 +156,8 @@ class ItemModel {
   final String name;
   final String value;
   final IconData icon;
+   bool acceptItem;
 
-  ItemModel({this.name, this.value, this.icon});
+  ItemModel({this.name, this.value, this.icon, this.acceptItem=false});
 
 }
