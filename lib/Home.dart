@@ -84,7 +84,6 @@ class _HomeState extends State<Home> {
             )),
 
             if(!gameOver)
-            
             Row(
               children: <Widget>[
 
@@ -105,7 +104,7 @@ class _HomeState extends State<Home> {
 
 
                 Column(
-                    children: items.map((item) {
+                    children: items2.map((item) {
                       return DragTarget<ItemModel>(
                         onAccept: (receivedItem){
                           if(item.value==receivedItem.value){
@@ -152,6 +151,7 @@ class _HomeState extends State<Home> {
 
               ],
             ),
+
             if(gameOver)
               Text("Game over"),
             if(gameOver)
