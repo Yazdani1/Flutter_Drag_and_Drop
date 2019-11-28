@@ -10,6 +10,7 @@ class _HomeState extends State<Home> {
   List<ItemModel>items;
   List<ItemModel>items2;
   int score;
+  bool gameOver;
 
   @override
   void initState() {
@@ -19,6 +20,7 @@ class _HomeState extends State<Home> {
 
   initGame() {
     score=0;
+    gameOver=false;
     items = [
       ItemModel(icon: Icons.remove_red_eye, name: "Google", value: "google"),
       ItemModel(icon: Icons.face, name: "Facebook", value: "facebook"),
@@ -51,6 +53,11 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+
+    if(items.length==0){
+      gameOver=true;
+    }
+
     return new Scaffold(
 
       appBar: AppBar(
@@ -75,6 +82,8 @@ class _HomeState extends State<Home> {
                 )
               ]
             )),
+
+            if(!gameOver)
             
             Row(
               children: <Widget>[
@@ -143,6 +152,20 @@ class _HomeState extends State<Home> {
 
               ],
             ),
+            if(gameOver)
+              Text("Game over"),
+            if(gameOver)
+            RaisedButton(
+              onPressed: (){
+                initGame();
+                setState(() {
+
+                });
+              },
+              child: Text("New Game"),
+              color: Colors.deepOrange,
+            )
+
           ],
         ),
       ),
