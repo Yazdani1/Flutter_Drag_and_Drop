@@ -9,6 +9,7 @@ class _HomeState extends State<Home> {
 
   List<ItemModel>items;
   List<ItemModel>items2;
+  int score;
 
   @override
   void initState() {
@@ -17,6 +18,7 @@ class _HomeState extends State<Home> {
   }
 
   initGame() {
+    score=0;
     items = [
       ItemModel(icon: Icons.remove_red_eye, name: "Google", value: "google"),
       ItemModel(icon: Icons.face, name: "Facebook", value: "facebook"),
@@ -58,46 +60,66 @@ class _HomeState extends State<Home> {
 
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
-        child: Row(
+        child: Column(
           children: <Widget>[
+            
+            Text.rich(TextSpan(
+              children: [
+                TextSpan(text: "Total Score:"),
+                TextSpan(text: "$score");
+              ]
+            )),
+            
+            Row(
+              children: <Widget>[
 
-            Column(
-                children: items.map((item) {
-                  return Container(
-                      margin: EdgeInsets.all(10.0),
-                      child: Draggable<ItemModel>(
-                        data: item,
-                        childWhenDragging: Icon(item.icon,color: Colors.grey,size: 50.0,),
-                        feedback: Icon(item.icon,size: 70.0,color: Colors.deepOrange,),
-                          child:Icon(item.icon, size: 50.0, color: Colors.amber,)
-                      )
-                  );
-                }).toList()
-            ),
-            Spacer(),
+                Column(
+                    children: items.map((item) {
+                      return Container(
+                          margin: EdgeInsets.all(10.0),
+                          child: Draggable<ItemModel>(
+                            data: item,
+                            childWhenDragging: Icon(item.icon,color: Colors.grey,size: 50.0,),
+                            feedback: Icon(item.icon,size: 70.0,color: Colors.deepOrange,),
+                              child:Icon(item.icon, size: 50.0, color: Colors.amber,)
+                          )
+                      );
+                    }).toList()
+                ),
+                Spacer(),
 
 
-            Column(
-                children: items.map((item) {
-                  return DragTarget<ItemModel>(
-
-                    builder:(context,acceptedItems, rejectedItems) => Container(
-                        margin: EdgeInsets.all(10.0),
-                        alignment: Alignment.center,
-                        width: 150.0,
-                        padding: EdgeInsets.all(10.0),
-                        decoration: BoxDecoration(
-                          color: Colors.deepOrange,
-                          borderRadius: BorderRadius.circular(10.0)
+                Column(
+                    children: items.map((item) {
+                      return DragTarget<ItemModel>(
+                        onAccept: (receivedItem){
+                          if(item.value==receivedItem.value){
+                            setState(() {
+                              items.remove(receivedItem);
+                              items2.remove(item);
+                            });
+                          }
+                        },
+                        onWillAccept: (receivedItem)=>true,
+                        builder:(context,acceptedItems, rejectedItems) => Container(
+                            margin: EdgeInsets.all(10.0),
+                            alignment: Alignment.center,
+                            width: 150.0,
+                            padding: EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(
+                              color: Colors.deepOrange,
+                              borderRadius: BorderRadius.circular(10.0)
+                            ),
+                            child: Text(item.name,
+                              style: TextStyle(fontSize: 20.0, color: Colors.white),)
                         ),
-                        child: Text(item.name,
-                          style: TextStyle(fontSize: 20.0, color: Colors.white),)
-                    ),
-                  );
-                }).toList()
+                      );
+                    }).toList()
+                ),
+
+
+              ],
             ),
-
-
           ],
         ),
       ),
